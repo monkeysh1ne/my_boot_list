@@ -23,22 +23,26 @@ class UI {
         isbn: 9877543
       }
     ];
-
+    
+    // assign temporary hard coded books array to var 'books'
     const books = StoredBooks;
 
     books.forEach((book) => UI.addBookToList(book));
   }
 
   static addBookToList(book){
+    // 'book-list' is ID for tbody element in DOM
     const list = document.querySelector('#book-list');
 
+    // create new row for each book entry in store
     const row = document.createElement('tr');
 
+    // populate new row with extracted book entry data
     row.innerHTML = `
     <td>${book.title}</td>
     <td>${book.author}</td>
     <td>${book.isbn}</td>
-    <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
+    <td><a href="#" class="delete"><i class="fas fa-trash text-danger"></i></a></td>
     `;
 
     list.appendChild(row);

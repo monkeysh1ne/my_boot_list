@@ -10,24 +10,10 @@ class Book {
 // UI Class: Handle UI Tasks
 class UI {
   static displayBooks(){
-    // hard coded values for testing only
-    const StoredBooks = [
-      {
-        title: 'Book One',
-        author: 'John Doe',
-        isbn: 365467
-      },
-      {
-        title: 'Book Two',
-        author: 'Jane Doe',
-        isbn: 9877543
-      }
-    ];
+    const books = Store.getBooks();
     
-    // assign temporary hard coded books array to var 'books'
-    const books = StoredBooks;
-
-    books.forEach((book) => UI.addBookToList(book));
+    
+     books.forEach((book) => UI.addBookToList(book));
   }
 
   static addBookToList(book){
@@ -96,6 +82,7 @@ class Store {
     
     books.push(book);
     // NB: localStorage requites STRING input so convert books from array to string using JSON stringify.
+
     localStorage.setItem('books', JSON.stringify(books));
   }
 
@@ -137,20 +124,30 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
     // Add book to UI
     UI.addBookToList(book);
 
+    // Add book to Store
+    Store.addBook(book);
+
     // Clear form fields
     UI.clearFields();
-    }
 
     // Show alert confirming successfully added in UI
     UI.showAlert('Book successfully added.', 'success');
+    }
+
+
 
 
 
 });
 
-// Event: Remove a Book NB: targets tbody element #book-list to ensure removing ROW not just delete anchor!
+// Event: Remove a Boo
+// NB: targets tbody element #book-list to ensure removing ROW not just delete anchor!
 document.querySelector('#book-list').addEventListener('click', (e) => {
+  // Remove book from UI
   UI.deleteBook(e.target);
   UI.showAlert('Book successfully removed.', 'success');
+
+  // Remove book from Store
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 
 })

@@ -107,6 +107,9 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
     UI.clearFields();
     }
 
+    // Show alert confirming successfully added in UI
+    UI.showAlert('Book successfully added.', 'success');
+
 
 
 });
@@ -114,4 +117,6 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 // Event: Remove a Book NB: targets tbody element #book-list to ensure removing ROW not just delete anchor!
 document.querySelector('#book-list').addEventListener('click', (e) => {
   UI.deleteBook(e.target);
+  UI.showAlert('Book successfully removed.', 'success');
+
 })

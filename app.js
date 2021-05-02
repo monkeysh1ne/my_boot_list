@@ -42,17 +42,25 @@ class UI {
     <td>${book.title}</td>
     <td>${book.author}</td>
     <td>${book.isbn}</td>
-    <td><a href="#" class="delete"><i class="fas fa-trash text-danger"></i></a></td>
+    <td><a href="#" class="btn btn-sm btn-danger delete">X</a></td>
     `;
 
     list.appendChild(row);
   }
+  static deleteBook(el){
+    if(el.classList.contains('delete')) {
+      el.parentElement.parentElement.remove();
+    }
+  }
+
 
   static clearFields(){
     document.querySelector('#title').value = '';
     document.querySelector('#author').value = '';
     document.querySelector('#isbn').value = '';
   }
+
+
 }
 
 // Store Class: Handles Storage
@@ -78,8 +86,12 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
   UI.addBookToList(book);
 
   // Clear form fields
+  UI.clearFields();
 
 
 });
 
 // Event: Remove a Book
+document.querySelector('#book-list').addEventListener('click', (e) => {
+  UI.deleteBook(e.target);
+})

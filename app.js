@@ -140,7 +140,7 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 
 });
 
-// Event: Remove a Boo
+// Event: Remove a Book
 // NB: targets tbody element #book-list to ensure removing ROW not just delete anchor!
 document.querySelector('#book-list').addEventListener('click', (e) => {
   // Remove book from UI
